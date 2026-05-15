@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const APP_ID = 3526710;
+const API_KEY = process.env.STEAM_API_KEY;
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
@@ -29,9 +30,9 @@ async function main() {
   console.log('Fetching Steam data...');
 
   const [appData, reviewsData, newsData] = await Promise.all([
-    fetch(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}`),
-    fetch(`https://store.steampowered.com/appreviews/${APP_ID}?json=1&num_per_page=0&language=all`),
-    fetch(`https://store.steampowered.com/news/?appid=${APP_ID}&json=1&count=20`),
+    fetch(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}&key=${API_KEY}`),
+    fetch(`https://store.steampowered.com/appreviews/${APP_ID}?json=1&num_per_page=0&language=all&key=${API_KEY}`),
+    fetch(`https://store.steampowered.com/news/?appid=${APP_ID}&json=1&count=20&key=${API_KEY}`),
   ]);
 
   console.log('API responses received');
