@@ -8,11 +8,6 @@
 .vscode/
 .idea/
 
-# Raw scraped data (not needed for live site)
-steam-scrape/page.html
-steam-scrape/page-data.json
-steam-scrape/page-content.txt
-
 # Test artifacts
 node_modules/
 test-results/

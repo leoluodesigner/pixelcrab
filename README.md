@@ -21,11 +21,11 @@ https://leoluodesigner.github.io/pixelcrab/
 ## Project Structure
 
 ```
-├── index.html              # Main page
+├── index.html              # Main page (all-in-one: structure + styles + data + logic)
 ├── image/
 │   └── logo.svg            # Site logo
 ├── steam-scrape/
-│   └── images/             # Compressed news cover images (JPEG)
+│   └── images/             # Compressed news cover images (JPEG, ~3.3MB total)
 └── .github/workflows/
     └── static.yml          # GitHub Pages deployment
 ```
