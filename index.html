@@ -728,13 +728,18 @@
 
     let newsData = FALLBACK_NEWS;
 
-    function formatDate(timestamp) {
-      const d = new Date(timestamp * 1000);
+    function toDate(val) {
+      if (typeof val === 'number') return new Date(val * 1000);
+      return new Date(val);
+    }
+
+    function formatDate(val) {
+      const d = toDate(val);
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
 
-    function getMonthYear(timestamp) {
-      const d = new Date(timestamp * 1000);
+    function getMonthYear(val) {
+      const d = toDate(val);
       return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     }
 
@@ -752,10 +757,11 @@
         html += `<div class="month-group"><h3 class="month-header">${month}</h3><div class="card-grid">`;
         cards.forEach(card => {
           const dateStr = formatDate(card.date);
+          const img = card.image || 'steam-scrape/images/content_1.jpg';
           html += `
             <div class="card" onclick="openModal(${card.index})">
               <div class="card-preview">
-                <img src="${card.image}" alt="${card.title}" loading="lazy">
+                <img src="${img}" alt="${card.title}" loading="lazy">
               </div>
               <div class="card-header">
                 <div class="card-info">
@@ -776,7 +782,8 @@
     function openModal(index) {
       const news = newsData[index];
       document.getElementById('modal-title').textContent = news.title;
-      document.getElementById('modal-cover').innerHTML = `<img src="${news.image}" alt="${news.title}">`;
+      const img = news.image || 'steam-scrape/images/content_1.jpg';
+      document.getElementById('modal-cover').innerHTML = `<img src="${img}" alt="${news.title}">`;
       const dateStr = typeof news.date === 'number' ? formatDate(news.date) : news.date;
       document.getElementById('modal-meta').innerHTML = `<span>${dateStr}</span><span class="card-source source-steam">Steam</span>`;
       document.getElementById('modal-content').innerHTML = news.content;
@@ -808,9 +815,10 @@
     });
 
     const APP_ID = 3526710;
+    const PROXY = 'https://corsproxy.io/?';
 
     async function fetchSteam(url) {
-      const res = await fetch(url);
+      const res = await fetch(PROXY + encodeURIComponent(url));
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const text = await res.text();
       if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) throw new Error('Got HTML instead of JSON');
@@ -858,8 +866,12 @@
 
         const apiNews = newsData?.appnews?.newsitems || [];
         if (apiNews.length) {
-          newsData = apiNews;
-          renderNews(apiNews);
+          newsData = apiNews.map(n => ({
+            title: n.title,
+            date: n.date,
+            content: n.contents || '',
+          }));
+          renderNews(newsData);
         } else {
           renderNews(FALLBACK_NEWS);
         }
