@@ -186,16 +186,6 @@
       object-fit: cover;
     }
 
-    .game-cover-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-muted);
-      font-size: 14px;
-    }
-
     .game-info {
       flex: 1;
     }
@@ -252,32 +242,6 @@
       color: var(--color-text-secondary);
     }
 
-    /* Rating Badge */
-    .rating-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .rating-positive {
-      background: rgba(76, 175, 80, 0.1);
-      color: var(--color-positive);
-    }
-
-    .rating-negative {
-      background: rgba(244, 67, 54, 0.1);
-      color: var(--color-negative);
-    }
-
-    .rating-icon {
-      width: 16px;
-      height: 16px;
-    }
-
     /* Section */
     .section {
       padding: 40px 0;
@@ -296,47 +260,18 @@
       color: var(--color-text);
     }
 
-    .section-link {
-      font-size: 14px;
-      color: var(--color-text-secondary);
-      text-decoration: none;
+    /* Month Group */
+    .month-group {
+      margin-bottom: 40px;
     }
 
-    .section-link:hover {
+    .month-header {
+      font-size: 18px;
+      font-weight: 700;
       color: var(--color-text);
-    }
-
-    /* Tab Navigation */
-    .tab-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .tab-item {
-      position: relative;
-      padding: 8px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-text-muted);
-      text-decoration: none;
-      letter-spacing: 0.2px;
-      cursor: pointer;
-      transition: color 0.2s;
-      border-radius: 8px;
-    }
-
-    .tab-item:hover {
-      color: var(--color-text);
-      background: var(--color-bg-hover);
-    }
-
-    .tab-item.active {
-      color: var(--color-text);
-      background: var(--color-primary);
-      color: white;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-border);
     }
 
     /* Card Grid */
@@ -379,34 +314,10 @@
       object-fit: cover;
     }
 
-    .card-preview-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-muted);
-      font-size: 14px;
-    }
-
     .card-header {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-    }
-
-    .card-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .card-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .card-info {
@@ -426,23 +337,16 @@
       overflow: hidden;
     }
 
-    .card-desc {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--color-text-secondary);
-      letter-spacing: 0.2px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
     .card-meta {
       display: flex;
       align-items: center;
       gap: 8px;
       margin-top: 12px;
       font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    .card-date {
       color: var(--color-text-muted);
     }
 
@@ -461,122 +365,104 @@
       color: var(--color-steam);
     }
 
-    .source-ign {
-      background: rgba(191, 19, 19, 0.1);
-      color: var(--color-ign);
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
     }
 
-    .source-gamersky {
-      background: rgba(0, 160, 233, 0.1);
-      color: var(--color-gamersky);
+    .modal-overlay.active {
+      display: flex;
     }
 
-    /* Review Card */
-    .review-card {
-      background: var(--color-bg-card);
-      border-radius: 16px;
-      padding: 20px;
+    .modal {
+      background: var(--color-bg);
+      border-radius: 20px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
     }
 
-    .review-header {
+    .modal-header {
+      position: sticky;
+      top: 0;
+      background: var(--color-bg);
+      padding: 24px;
+      border-bottom: 1px solid var(--color-border);
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      justify-content: space-between;
+      z-index: 1;
     }
 
-    .review-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--color-border);
-      overflow: hidden;
-    }
-
-    .review-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .review-user {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-text);
-    }
-
-    .review-date {
-      font-size: 12px;
-      color: var(--color-text-muted);
-    }
-
-    .review-content {
-      font-size: 14px;
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* Update Timeline */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      display: flex;
-      gap: 16px;
-      padding: 16px;
-      background: var(--color-bg-card);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .timeline-item:hover {
-      background: rgba(64, 64, 64, 0.12);
-    }
-
-    .timeline-date {
-      flex-shrink: 0;
-      width: 80px;
-      text-align: center;
-    }
-
-    .timeline-day {
-      font-size: 24px;
+    .modal-title {
+      font-size: 20px;
       font-weight: 700;
       color: var(--color-text);
-    }
-
-    .timeline-month {
-      font-size: 12px;
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-    }
-
-    .timeline-content {
       flex: 1;
+      padding-right: 16px;
     }
 
-    .timeline-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 4px;
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--color-bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .timeline-desc {
-      font-size: 13px;
-      color: var(--color-text-secondary);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+    .modal-close:hover {
+      background: var(--color-border);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-cover {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 24px;
       overflow: hidden;
+    }
+
+    .modal-cover img {
+      width: 100%;
+      height: auto;
+    }
+
+    .modal-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    .modal-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+    }
+
+    .modal-content p {
+      margin-bottom: 16px;
     }
 
     /* Footer */
@@ -655,9 +541,8 @@
         grid-template-columns: 1fr;
       }
 
-      .tab-nav {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+      .modal-overlay {
+        padding: 20px;
       }
     }
   </style>
@@ -701,7 +586,7 @@
       <!-- Game Hero Section -->
       <section class="game-hero">
         <div class="game-cover">
-          <div class="game-cover-placeholder">Game Cover</div>
+          <img src="steam-scrape/images/content_1.png" alt="Everything is Crab">
         </div>
         <div class="game-info">
           <h1 class="game-title">Everything is Crab</h1>
@@ -709,25 +594,26 @@
           <div class="game-meta">
             <div class="meta-item">
               <span class="meta-label">Developer</span>
-              <span class="meta-value" id="developer">Loading...</span>
+              <span class="meta-value">Odd Dreams Digital</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Publisher</span>
-              <span class="meta-value" id="publisher">Loading...</span>
+              <span class="meta-value">Secret Mode</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Release Date</span>
-              <span class="meta-value" id="release-date">Loading...</span>
+              <span class="meta-value">May 8, 2026</span>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Rating</span>
-              <span class="meta-value" id="rating">Loading...</span>
+              <span class="meta-label">Price</span>
+              <span class="meta-value">$9.99</span>
             </div>
           </div>
-          <div class="game-tags" id="game-tags">
+          <div class="game-tags">
             <span class="tag">Roguelite</span>
             <span class="tag">Action</span>
             <span class="tag">Crab</span>
+            <span class="tag">Evolution</span>
           </div>
         </div>
       </section>
@@ -736,47 +622,137 @@
       <section class="section" id="news">
         <div class="section-header">
           <h2 class="section-title">Latest News</h2>
-          <a href="#" class="section-link">View All</a>
         </div>
-        <div class="tab-nav">
-          <a href="#" class="tab-item active">All</a>
-          <a href="#" class="tab-item">Updates</a>
-          <a href="#" class="tab-item">Announcements</a>
-          <a href="#" class="tab-item">Events</a>
-        </div>
-        <div class="card-grid" id="news-grid">
-          <!-- News cards will be loaded here -->
-          <div class="card">
-            <div class="card-preview">
-              <div class="card-preview-placeholder">Loading...</div>
+
+        <!-- May 2026 -->
+        <div class="month-group">
+          <h3 class="month-header">May 2026</h3>
+          <div class="card-grid">
+            <div class="card" onclick="openModal(0)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_1.png" alt="250K Sales">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">How Shucking! Everything is Crab passes 250,000 Sales 🦀</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">May 12</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
             </div>
-            <div class="card-header">
-              <div class="card-info">
-                <div class="card-title">Loading news...</div>
-                <div class="card-desc">Please wait while we fetch the latest updates.</div>
+
+            <div class="card" onclick="openModal(1)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_2.png" alt="100K Sales">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">《万物皆可蟹：动物进化》48小时销量突破10万份！</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">May 10</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
+            </div>
+
+            <div class="card" onclick="openModal(2)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_3.png" alt="Launch">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">《万物皆可蟹：动物进化》现已正式上线！🦀</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">May 8</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
+            </div>
+
+            <div class="card" onclick="openModal(3)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_4.png" alt="Steam Deck">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">发售倒计时两天-现已支持Steam Deck！</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">May 6</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
+            </div>
+
+            <div class="card" onclick="openModal(4)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_5.png" alt="Future Content">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">万物皆可蟹 | 未来更新内容前瞻 🦀</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">May 5</span>
+                <span class="card-source source-steam">Steam</span>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Reviews Section -->
-      <section class="section" id="reviews">
-        <div class="section-header">
-          <h2 class="section-title">Steam Reviews</h2>
-          <a href="#" class="section-link">View All</a>
-        </div>
-        <div class="card-grid" id="reviews-grid">
-          <!-- Review cards will be loaded here -->
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-avatar"></div>
-              <div>
-                <div class="review-user">Loading...</div>
-                <div class="review-date">--</div>
+        <!-- April 2026 -->
+        <div class="month-group">
+          <h3 class="month-header">April 2026</h3>
+          <div class="card-grid">
+            <div class="card" onclick="openModal(5)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_6.png" alt="Darwin Guide">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">Darwin's Guide to Survival | Part 3</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">Apr 24</span>
+                <span class="card-source source-steam">Steam</span>
               </div>
             </div>
-            <div class="review-content">Loading reviews...</div>
+
+            <div class="card" onclick="openModal(6)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_7.png" alt="Demo">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">Everything is Crab Demo Runs Until May 1</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">Apr 17</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
+            </div>
+
+            <div class="card" onclick="openModal(7)">
+              <div class="card-preview">
+                <img src="steam-scrape/images/content_8.png" alt="Wishlists">
+              </div>
+              <div class="card-header">
+                <div class="card-info">
+                  <div class="card-title">300,000 Wishlists!</div>
+                </div>
+              </div>
+              <div class="card-meta">
+                <span class="card-date">Apr 16</span>
+                <span class="card-source source-steam">Steam</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -785,23 +761,15 @@
       <section class="section" id="guides">
         <div class="section-header">
           <h2 class="section-title">Guides & Walkthroughs</h2>
-          <a href="#" class="section-link">View All</a>
         </div>
-        <div class="tab-nav">
-          <a href="#" class="tab-item active">All Platforms</a>
-          <a href="#" class="tab-item">IGN</a>
-          <a href="#" class="tab-item">Gamersky</a>
-        </div>
-        <div class="card-grid" id="guides-grid">
-          <!-- Guide cards will be loaded here -->
+        <div class="card-grid">
           <a href="https://www.ign.com/games/everything-is-crab" target="_blank" class="card">
             <div class="card-preview">
-              <div class="card-preview-placeholder">IGN Guide</div>
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(191,19,19,0.1);color:var(--color-ign);font-weight:700;font-size:24px;">IGN</div>
             </div>
             <div class="card-header">
               <div class="card-info">
                 <div class="card-title">Everything is Crab Guide</div>
-                <div class="card-desc">Complete walkthrough and tips from IGN</div>
               </div>
             </div>
             <div class="card-meta">
@@ -810,12 +778,11 @@
           </a>
           <a href="https://www.gamersky.com/z/everythingiscrab/" target="_blank" class="card">
             <div class="card-preview">
-              <div class="card-preview-placeholder">Gamersky Guide</div>
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,160,233,0.1);color:var(--color-gamersky);font-weight:700;font-size:24px;">Gamersky</div>
             </div>
             <div class="card-header">
               <div class="card-info">
                 <div class="card-title">Everything is Crab 攻略</div>
-                <div class="card-desc">游民星空游戏攻略与评测</div>
               </div>
             </div>
             <div class="card-meta">
@@ -824,12 +791,11 @@
           </a>
           <a href="https://store.steampowered.com/app/3526710/" target="_blank" class="card">
             <div class="card-preview">
-              <div class="card-preview-placeholder">Steam Store</div>
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(27,40,56,0.1);color:var(--color-steam);font-weight:700;font-size:24px;">Steam</div>
             </div>
             <div class="card-header">
               <div class="card-info">
                 <div class="card-title">Steam Store Page</div>
-                <div class="card-desc">View on Steam and read community guides</div>
               </div>
             </div>
             <div class="card-meta">
@@ -840,6 +806,25 @@
       </section>
     </div>
   </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <button class="modal-close" onclick="closeModal()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l8 8M12 4l-8 8"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-cover" id="modal-cover"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-content" id="modal-content"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -858,14 +843,111 @@
   </footer>
 
   <script>
-    // Tab switching
-    document.querySelectorAll('.tab-item').forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        e.preventDefault();
-        const parent = tab.closest('.tab-nav');
-        parent.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-      });
+    const newsData = [
+      {
+        title: "How Shucking! Everything is Crab passes 250,000 Sales 🦀",
+        date: "May 12, 2026",
+        image: "steam-scrape/images/content_1.png",
+        content: `<p>Hey Crabbies! 🦀</p>
+<p>The weekend has passed, and Everything is Crab has passed 250,000 sales! That's 0.25% of the approximate number of crabs on Christmas Island! 🦀</p>
+<p>A huge thank you to EVERYONE who has picked up a copy for themselves, for friends, and for family!</p>
+<p>We are continuing to collect your feedback and bug reports, so please keep leaving them in the pinned discussion posts or our Discord. 🦀</p>
+<p>Check out Secret Mode channels for all the big news for Everything is Crab, and for extra insight from the devs, follow Odd Dreams Digital on X, Bluesky, TikTok, Instagram, and join the Discord!</p>
+<p>Carcinisation - a form of convergent evolution where non-crab crustaceans independently evolve into a crab-like body. 🦀</p>`
+      },
+      {
+        title: "《万物皆可蟹：动物进化》48小时销量突破10万份！",
+        date: "May 10, 2026",
+        image: "steam-scrape/images/content_2.png",
+        content: `<p>"蟹蟹"大家！</p>
+<p>嘿，蟹友们！</p>
+<p>距离《万物皆可蟹：动物进化》正式发售还不到48小时，我们已经正式突破——🦀 10万销量！🦀 非常非常感谢大家的关注与支持！</p>
+<p>与此同时，我们还成功：</p>
+<ul>
+<li>登顶 Steam 热门新品榜</li>
+<li>在线峰值玩家数持续上涨，目前已突破 16,000 人！</li>
+</ul>
+<p>再次感谢所有支持我们的玩家，是大家和我们一起，达成了这个里程碑。</p>
+<p>如果你还没有加入这场"蟹化"进化之旅——目前我们仍在首发双周限时折扣内，售价38元，限时折扣价34.2元。</p>
+<p>此外，我们也上线了多个特别捆绑包，包括：《吸血鬼幸存者》、《挺进地牢》、《卡片魔王：只剩个头！》等很好玩的游戏推出了捆绑包，如果你有以上任意一款游戏，别忘记选择捆绑包的折上折优惠~</p>
+<p>同时，也特别感谢已经在游玩的大家！你们的评论、反馈与建议，我们都有认真在看！</p>
+<p>目前团队成员也正在各个平台中四处"横着走"，持续收集大家的反馈，并同步后续优化进展 🦀</p>`
+      },
+      {
+        title: "《万物皆可蟹：动物进化》现已正式上线！🦀",
+        date: "May 8, 2026",
+        image: "steam-scrape/images/content_3.png",
+        content: `<p>来成为螃蟹吧！</p>
+<p>嘿，蟹友们 🦀《万物皆可蟹：动物进化》终于迎来了它的下一次进化——正式上线！</p>
+<p>游戏售价38元，首发限时双周折扣，折扣价34.2元~</p>
+<p>这是一款以"动物进化"为核心的 青春版肉鸽游戏！你将化身为拥有无限潜力的蓝色生物「达尔文（Darwin）」，置身于一个充满生机的生态系统——捕食、逃生、觅食，并一步步成长。</p>
+<p>在不断升级的过程中，获取来自不同动物的能力，从 100+ 种进化 与 20+专精方向中做出选择，获得新的手臂、腿、翅膀、眼睛、毛皮等能力，自由构筑，打造独属于你的"奇美拉"构筑！</p>
+<p>与此同时，我们也同步上线了一个「Supporter Pack（支持者礼包）」DLC。这是一个可选的付费 DLC，主要用于支持开发团队。其中包含了一些特殊外观道具。</p>
+<p>未来我们也准备好了更多更新计划，期待接下来继续为大家带来更多有趣，好玩的内容。</p>`
+      },
+      {
+        title: "发售倒计时两天-现已支持Steam Deck！",
+        date: "May 6, 2026",
+        image: "steam-scrape/images/content_4.png",
+        content: `<p>哈喽，蟹友们 🦀</p>
+<p>🦀🦀 大家的关注，我们最近在社区也看到了很多大家相关的讨论，所以确认这个好消息的第一时间，我们就想尽快告诉大家：《万物皆可蟹：动物进化》将会在5月8日发售，并支持Steam Deck！这下大家在掌机上，也能开启一场特别的进化之旅咯！</p>
+<p>再次感谢所有在 Steam Deck 上参与测试和/或体验 Demo 的玩家，以及你们提供的宝贵意见，这些都为我们即将上线的正式版本，指明了重要的优化方向！</p>
+<p>如果你在发售后使用 Steam Deck 游玩时遇到任何问题，或有任何反馈，欢迎前往游戏的官群/Discord联系我们！</p>
+<p>"蟹化"（Carcinisation）——一种趋同进化现象，指非蟹类甲壳动物在进化过程中，独立演化出类似螃蟹的身体结构。🦀</p>`
+      },
+      {
+        title: "万物皆可蟹 | 未来更新内容前瞻 🦀",
+        date: "May 5, 2026",
+        image: "steam-scrape/images/content_5.png",
+        content: `<p>嘿，蟹友们 🦀</p>
+<p>距离《万物皆可蟹：动物进化》正式上线，已经只剩最后一点点时间啦！在发售之前，我们也想提前和大家分享一下：已经在路上的，未来的部分更新计划！</p>
+<p>以及对应上方图片的文字整理，大家有需要的话也可以看这里！</p>
+<p>未来我们将持续更新更多内容，包括新的进化路线、挑战模式、以及更多有趣的游戏机制。敬请期待！</p>`
+      },
+      {
+        title: "Darwin's Guide to Survival | Part 3",
+        date: "April 24, 2026",
+        image: "steam-scrape/images/content_6.png",
+        content: `<p>How to conquer the elements, and more info on Challenges!</p>
+<p>The third and final video from Darwin before Everything is Crab's launch is here!</p>
+<p>In this guide, Darwin teaches you how to master the elemental forces and survive in the harsh world of evolution. Learn about the new Challenge mode and how to unlock special abilities.</p>`
+      },
+      {
+        title: "Everything is Crab Demo Runs Until May 1",
+        date: "April 17, 2026",
+        image: "steam-scrape/images/content_7.png",
+        content: `<p>Get your Crab fix during Earth Appreciation Festival</p>
+<p>The demo for Everything is Crab will hit extinction on May 1, so dive in when you can, before the full launch on May 8!</p>
+<p>Try out the game for free and experience the crabvolution before the full release. Your feedback helps us make the game better!</p>`
+      },
+      {
+        title: "300,000 Wishlists!",
+        date: "April 16, 2026",
+        image: "steam-scrape/images/content_8.png",
+        content: `<p>300,000 crabs to be! 🦀</p>
+<p>Everything is Crab has 300k wishlists!</p>
+<p>Thank you to everyone who has wishlisted the game. We're overwhelmed by the support and can't wait for you to experience the full game on May 8!</p>`
+      }
+    ];
+
+    function openModal(index) {
+      const news = newsData[index];
+      document.getElementById('modal-title').textContent = news.title;
+      document.getElementById('modal-cover').innerHTML = `<img src="${news.image}" alt="${news.title}">`;
+      document.getElementById('modal-meta').innerHTML = `<span>${news.date}</span><span class="card-source source-steam">Steam</span>`;
+      document.getElementById('modal-content').innerHTML = news.content;
+      document.getElementById('modal-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('modal-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
     });
 
     // Smooth scroll for nav links
