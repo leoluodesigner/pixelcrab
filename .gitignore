@@ -1,1 +1,14 @@
+# MCP config (contains API keys)
 .mcp.json
+
+# OS files
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+
+# Raw scraped data (not needed for live site)
+steam-scrape/page.html
+steam-scrape/page-data.json
+steam-scrape/page-content.txt
