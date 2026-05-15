@@ -815,10 +815,10 @@
     });
 
     const APP_ID = 3526710;
-    const PROXY = 'https://corsproxy.io/?';
+    const PROXY = 'https://api.codetabs.com/v1/proxy?quest=';
 
     async function fetchSteam(url) {
-      const res = await fetch(PROXY + encodeURIComponent(url));
+      const res = await fetch(PROXY + url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const text = await res.text();
       if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) throw new Error('Got HTML instead of JSON');
