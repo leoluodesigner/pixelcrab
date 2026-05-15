@@ -3,18 +3,25 @@ const fs = require('fs');
 const path = require('path');
 
 const APP_ID = 3526710;
-const API_KEY = process.env.STEAM_API_KEY;
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, { headers: { 'User-Agent': 'Pixelcrab/1.0' } }, (res) => {
+    const req = https.get(url, { headers: { 'User-Agent': 'Pixelcrab/1.0' } }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        return fetch(res.headers.location).then(resolve, reject);
+      }
+      if (res.statusCode !== 200) {
+        return reject(new Error(`HTTP ${res.statusCode} for ${url}`));
+      }
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         try { resolve(JSON.parse(data)); }
-        catch (e) { reject(new Error(`JSON parse error: ${e.message}`)); }
+        catch (e) { reject(new Error(`JSON parse error: ${e.message}\nBody: ${data.slice(0, 200)}`)); }
       });
-    }).on('error', reject);
+    });
+    req.on('error', reject);
+    req.setTimeout(15000, () => { req.destroy(); reject(new Error(`Timeout for ${url}`)); });
   });
 }
 
@@ -22,10 +29,12 @@ async function main() {
   console.log('Fetching Steam data...');
 
   const [appData, reviewsData, newsData] = await Promise.all([
-    fetch(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}&l=schinese`),
+    fetch(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}`),
     fetch(`https://store.steampowered.com/appreviews/${APP_ID}?json=1&num_per_page=0&language=all`),
     fetch(`https://store.steampowered.com/news/?appid=${APP_ID}&json=1&count=20`),
   ]);
+
+  console.log('API responses received');
 
   const app = appData[String(APP_ID)];
   const info = app?.data;
@@ -53,7 +62,6 @@ async function main() {
       positive: reviewsData?.query_summary?.total_positive || 0,
       negative: reviewsData?.query_summary?.total_negative || 0,
       score: reviewsData?.query_summary?.review_score_desc || '',
-      recentReviews: reviewsData?.query_summary?.reviews_per_day || 0,
     },
     news: (newsData?.appnews?.newsitems || []).map(item => ({
       id: item.gid,
@@ -65,8 +73,9 @@ async function main() {
     })),
   };
 
-  const outPath = path.join(__dirname, '..', 'data', 'steam.json');
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  const outDir = path.join(process.cwd(), 'data');
+  const outPath = path.join(outDir, 'steam.json');
+  fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify(result, null, 2));
   console.log(`Wrote ${outPath}`);
   console.log(`Game: ${result.game.name}`);
@@ -74,4 +83,4 @@ async function main() {
   console.log(`News: ${result.news.length} items`);
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+main().catch(err => { console.error('FATAL:', err); process.exit(1); });
