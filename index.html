@@ -807,60 +807,64 @@
       });
     });
 
-    // Fetch live data from steam.json, fall back to hardcoded
+    const APP_ID = 3526710;
+
+    async function fetchSteam(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) throw new Error('Got HTML instead of JSON');
+      return JSON.parse(text);
+    }
+
     async function loadData() {
       try {
-        const res = await fetch('data/steam.json');
-        if (!res.ok) throw new Error('No steam.json');
-        const data = await res.json();
+        const [appData, reviewsData, newsData] = await Promise.all([
+          fetchSteam(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}`),
+          fetchSteam(`https://store.steampowered.com/appreviews/${APP_ID}?json=1&num_per_page=0&language=all`),
+          fetchSteam(`https://store.steampowered.com/news/?appid=${APP_ID}&json=1&count=20`),
+        ]);
 
-        // Update game hero with live data
-        if (data.game) {
-          const g = data.game;
-          if (g.name) document.querySelector('.game-title').textContent = g.name;
-          if (g.description) document.querySelector('.game-subtitle').textContent = g.description;
-          if (g.developers?.length) {
-            document.querySelector('.meta-value').textContent = g.developers.join(', ');
+        const app = appData[String(APP_ID)];
+        const info = app?.data;
+
+        if (info) {
+          if (info.name) document.querySelector('.game-title').textContent = info.name;
+          if (info.short_description) document.querySelector('.game-subtitle').textContent = info.short_description;
+          if (info.developers?.length) {
+            document.querySelector('.meta-value').textContent = info.developers.join(', ');
           }
-          if (g.releaseDate) {
-            const relMeta = document.querySelectorAll('.meta-item')[2]?.querySelector('.meta-value');
-            if (relMeta) relMeta.textContent = g.releaseDate;
+          if (info.release_date?.date) {
+            document.querySelectorAll('.meta-item')[2]?.querySelector('.meta-value') &&
+              (document.querySelectorAll('.meta-item')[2].querySelector('.meta-value').textContent = info.release_date.date);
           }
-          if (g.price) {
-            const priceMeta = document.querySelectorAll('.meta-item')[3]?.querySelector('.meta-value');
-            if (priceMeta) priceMeta.textContent = g.price.final || 'Free';
+          if (info.price_overview) {
+            document.querySelectorAll('.meta-item')[3]?.querySelector('.meta-value') &&
+              (document.querySelectorAll('.meta-item')[3].querySelector('.meta-value').textContent = info.price_overview.final_formatted);
           }
-          if (g.genres?.length) {
-            const tags = document.querySelector('.game-tags');
-            if (tags) tags.innerHTML = g.genres.slice(0, 5).map(t => `<span class="tag">${t}</span>`).join('');
+          if (info.genres?.length) {
+            document.querySelector('.game-tags').innerHTML = info.genres.slice(0, 5).map(g => `<span class="tag">${g.description}</span>`).join('');
           }
-          if (g.headerImage) {
-            const cover = document.querySelector('.game-cover img');
-            if (cover) cover.src = g.headerImage;
+          if (info.header_image) {
+            document.querySelector('.game-cover img').src = info.header_image;
           }
         }
 
-        // Update reviews in header
-        if (data.reviews) {
-          const r = data.reviews;
-          const pct = r.total > 0 ? Math.round(r.positive / r.total * 100) : 0;
-          document.querySelector('.user-name').textContent = `${pct}% positive (${r.total.toLocaleString()} reviews)`;
+        if (reviewsData?.query_summary) {
+          const r = reviewsData.query_summary;
+          const pct = r.total_reviews > 0 ? Math.round(r.total_positive / r.total_reviews * 100) : 0;
+          document.querySelector('.user-name').textContent = `${pct}% positive (${r.total_reviews.toLocaleString()} reviews)`;
         }
 
-        // Update news
-        if (data.news?.length) {
-          newsData = data.news.map(n => ({
-            title: n.title,
-            date: n.date,
-            image: n.url?.includes('steampowered') ? '' : '',
-            content: n.contents || '<p>No content available.</p>',
-          }));
-          renderNews(data.news);
+        const apiNews = newsData?.appnews?.newsitems || [];
+        if (apiNews.length) {
+          newsData = apiNews;
+          renderNews(apiNews);
         } else {
           renderNews(FALLBACK_NEWS);
         }
       } catch (e) {
-        console.log('Using fallback data:', e.message);
+        console.log('Steam API unavailable, using fallback:', e.message);
         renderNews(FALLBACK_NEWS);
       }
     }

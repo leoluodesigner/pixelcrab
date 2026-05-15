@@ -1,9 +1,11 @@
 name: Fetch Steam Data
 
 on:
-  schedule:
-    - cron: '23 3 * * *'
   workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "run" to confirm'
+        required: true
 
 permissions:
   contents: write
