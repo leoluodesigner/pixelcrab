@@ -12,3 +12,11 @@
 steam-scrape/page.html
 steam-scrape/page-data.json
 steam-scrape/page-content.txt
+
+# Test artifacts
+node_modules/
+test-results/
+playwright.config.js
+package.json
+package-lock.json
+corsproxy_result.png

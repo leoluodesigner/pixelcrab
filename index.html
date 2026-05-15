@@ -714,40 +714,99 @@
   </footer>
 
   <script>
-    // Fallback data (used if steam.json fetch fails)
-    const FALLBACK_NEWS = [
-      { title: "How Shucking! Everything is Crab passes 250,000 Sales 🦀", date: "May 12, 2026", image: "steam-scrape/images/content_1.jpg", content: "<p>Hey Crabbies! 🦀</p><p>Everything is Crab has passed 250,000 sales! A huge thank you to everyone!</p>" },
-      { title: "《万物皆可蟹：动物进化》48小时销量突破10万份！", date: "May 10, 2026", image: "steam-scrape/images/content_2.jpg", content: "<p>嘿，蟹友们！正式突破 10万销量！🦀</p>" },
-      { title: "《万物皆可蟹：动物进化》现已正式上线！🦀", date: "May 8, 2026", image: "steam-scrape/images/content_3.jpg", content: "<p>来成为螃蟹吧！正式上线！</p>" },
-      { title: "发售倒计时两天-现已支持Steam Deck！", date: "May 6, 2026", image: "steam-scrape/images/content_4.jpg", content: "<p>支持 Steam Deck！</p>" },
-      { title: "万物皆可蟹 | 未来更新内容前瞻 🦀", date: "May 5, 2026", image: "steam-scrape/images/content_5.jpg", content: "<p>未来更新计划前瞻！</p>" },
-      { title: "Darwin's Guide to Survival | Part 3", date: "April 24, 2026", image: "steam-scrape/images/content_6.jpg", content: "<p>How to conquer the elements!</p>" },
-      { title: "Everything is Crab Demo Runs Until May 1", date: "April 17, 2026", image: "steam-scrape/images/content_7.jpg", content: "<p>The demo will hit extinction on May 1!</p>" },
-      { title: "300,000 Wishlists!", date: "April 16, 2026", image: "steam-scrape/images/content_8.jpg", content: "<p>300k wishlists! 🦀</p>" },
+    const newsData = [
+      {
+        title: "How Shucking! Everything is Crab passes 250,000 Sales 🦀",
+        date: "May 12, 2026",
+        image: "steam-scrape/images/content_1.jpg",
+        content: `<p>Hey Crabbies! 🦀</p>
+<p>The weekend has passed, and Everything is Crab has passed 250,000 sales! That's 0.25% of the approximate number of crabs on Christmas Island! 🦀</p>
+<p>A huge thank you to EVERYONE who has picked up a copy for themselves, for friends, and for family!</p>
+<p>We are continuing to collect your feedback and bug reports, so please keep leaving them in the pinned discussion posts or our Discord. 🦀</p>
+<p>Check out Secret Mode channels for all the big news for Everything is Crab, and for extra insight from the devs, follow Odd Dreams Digital on X, Bluesky, TikTok, Instagram, and join the Discord!</p>
+<p>Carcinisation - a form of convergent evolution where non-crab crustaceans independently evolve into a crab-like body. 🦀</p>`
+      },
+      {
+        title: "《万物皆可蟹：动物进化》48小时销量突破10万份！",
+        date: "May 10, 2026",
+        image: "steam-scrape/images/content_2.jpg",
+        content: `<p>"蟹蟹"大家！</p>
+<p>嘿，蟹友们！</p>
+<p>距离《万物皆可蟹：动物进化》正式发售还不到48小时，我们已经正式突破——🦀 10万销量！🦀 非常非常感谢大家的关注与支持！</p>
+<p>与此同时，我们还成功：</p>
+<ul>
+<li>登顶 Steam 热门新品榜</li>
+<li>在线峰值玩家数持续上涨，目前已突破 16,000 人！</li>
+</ul>
+<p>再次感谢所有支持我们的玩家，是大家和我们一起，达成了这个里程碑。</p>
+<p>如果你还没有加入这场"蟹化"进化之旅——目前我们仍在首发双周限时折扣内，售价38元，限时折扣价34.2元。</p>
+<p>此外，我们也上线了多个特别捆绑包，包括：《吸血鬼幸存者》、《挺进地牢》、《卡片魔王：只剩个头！》等很好玩的游戏推出了捆绑包，如果你有以上任意一款游戏，别忘记选择捆绑包的折上折优惠~</p>
+<p>同时，也特别感谢已经在游玩的大家！你们的评论、反馈与建议，我们都有认真在看！</p>
+<p>目前团队成员也正在各个平台中四处"横着走"，持续收集大家的反馈，并同步后续优化进展 🦀</p>`
+      },
+      {
+        title: "《万物皆可蟹：动物进化》现已正式上线！🦀",
+        date: "May 8, 2026",
+        image: "steam-scrape/images/content_3.jpg",
+        content: `<p>来成为螃蟹吧！</p>
+<p>嘿，蟹友们 🦀《万物皆可蟹：动物进化》终于迎来了它的下一次进化——正式上线！</p>
+<p>游戏售价38元，首发限时双周折扣，折扣价34.2元~</p>
+<p>这是一款以"动物进化"为核心的 青春版肉鸽游戏！你将化身为拥有无限潜力的蓝色生物「达尔文（Darwin）」，置身于一个充满生机的生态系统——捕食、逃生、觅食，并一步步成长。</p>
+<p>在不断升级的过程中，获取来自不同动物的能力，从 100+ 种进化 与 20+专精方向中做出选择，获得新的手臂、腿、翅膀、眼睛、毛皮等能力，自由构筑，打造独属于你的"奇美拉"构筑！</p>
+<p>与此同时，我们也同步上线了一个「Supporter Pack（支持者礼包）」DLC。这是一个可选的付费 DLC，主要用于支持开发团队。其中包含了一些特殊外观道具。</p>
+<p>未来我们也准备好了更多更新计划，期待接下来继续为大家带来更多有趣，好玩的内容。</p>`
+      },
+      {
+        title: "发售倒计时两天-现已支持Steam Deck！",
+        date: "May 6, 2026",
+        image: "steam-scrape/images/content_4.jpg",
+        content: `<p>哈喽，蟹友们 🦀</p>
+<p>🦀🦀 大家的关注，我们最近在社区也看到了很多大家相关的讨论，所以确认这个好消息的第一时间，我们就想尽快告诉大家：《万物皆可蟹：动物进化》将会在5月8日发售，并支持Steam Deck！这下大家在掌机上，也能开启一场特别的进化之旅咯！</p>
+<p>再次感谢所有在 Steam Deck 上参与测试和/或体验 Demo 的玩家，以及你们提供的宝贵意见，这些都为我们即将上线的正式版本，指明了重要的优化方向！</p>
+<p>如果你在发售后使用 Steam Deck 游玩时遇到任何问题，或有任何反馈，欢迎前往游戏的官群/Discord联系我们！</p>
+<p>"蟹化"（Carcinisation）——一种趋同进化现象，指非蟹类甲壳动物在进化过程中，独立演化出类似螃蟹的身体结构。🦀</p>`
+      },
+      {
+        title: "万物皆可蟹 | 未来更新内容前瞻 🦀",
+        date: "May 5, 2026",
+        image: "steam-scrape/images/content_5.jpg",
+        content: `<p>嘿，蟹友们 🦀</p>
+<p>距离《万物皆可蟹：动物进化》正式上线，已经只剩最后一点点时间啦！在发售之前，我们也想提前和大家分享一下：已经在路上的，未来的部分更新计划！</p>
+<p>以及对应上方图片的文字整理，大家有需要的话也可以看这里！</p>
+<p>未来我们将持续更新更多内容，包括新的进化路线、挑战模式、以及更多有趣的游戏机制。敬请期待！</p>`
+      },
+      {
+        title: "Darwin's Guide to Survival | Part 3",
+        date: "April 24, 2026",
+        image: "steam-scrape/images/content_6.jpg",
+        content: `<p>How to conquer the elements, and more info on Challenges!</p>
+<p>The third and final video from Darwin before Everything is Crab's launch is here!</p>
+<p>In this guide, Darwin teaches you how to master the elemental forces and survive in the harsh world of evolution. Learn about the new Challenge mode and how to unlock special abilities.</p>`
+      },
+      {
+        title: "Everything is Crab Demo Runs Until May 1",
+        date: "April 17, 2026",
+        image: "steam-scrape/images/content_7.jpg",
+        content: `<p>Get your Crab fix during Earth Appreciation Festival</p>
+<p>The demo for Everything is Crab will hit extinction on May 1, so dive in when you can, before the full launch on May 8!</p>
+<p>Try out the game for free and experience the crabvolution before the full release. Your feedback helps us make the game better!</p>`
+      },
+      {
+        title: "300,000 Wishlists!",
+        date: "April 16, 2026",
+        image: "steam-scrape/images/content_8.jpg",
+        content: `<p>300,000 crabs to be! 🦀</p>
+<p>Everything is Crab has 300k wishlists!</p>
+<p>Thank you to everyone who has wishlisted the game. We're overwhelmed by the support and can't wait for you to experience the full game on May 8!</p>`
+      }
     ];
-
-    let newsData = FALLBACK_NEWS;
-
-    function toDate(val) {
-      if (typeof val === 'number') return new Date(val * 1000);
-      return new Date(val);
-    }
-
-    function formatDate(val) {
-      const d = toDate(val);
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    }
-
-    function getMonthYear(val) {
-      const d = toDate(val);
-      return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    }
 
     function renderNews(items) {
       const container = document.getElementById('news-container');
       const grouped = {};
       items.forEach((item, i) => {
-        const key = getMonthYear(item.date);
+        const d = new Date(item.date);
+        const key = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
         if (!grouped[key]) grouped[key] = [];
         grouped[key].push({ ...item, index: i });
       });
@@ -756,12 +815,11 @@
       for (const [month, cards] of Object.entries(grouped)) {
         html += `<div class="month-group"><h3 class="month-header">${month}</h3><div class="card-grid">`;
         cards.forEach(card => {
-          const dateStr = formatDate(card.date);
-          const img = card.image || 'steam-scrape/images/content_1.jpg';
+          const dateStr = new Date(card.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
           html += `
             <div class="card" onclick="openModal(${card.index})">
               <div class="card-preview">
-                <img src="${img}" alt="${card.title}" loading="lazy">
+                <img src="${card.image}" alt="${card.title}" loading="lazy">
               </div>
               <div class="card-header">
                 <div class="card-info">
@@ -782,10 +840,8 @@
     function openModal(index) {
       const news = newsData[index];
       document.getElementById('modal-title').textContent = news.title;
-      const img = news.image || 'steam-scrape/images/content_1.jpg';
-      document.getElementById('modal-cover').innerHTML = `<img src="${img}" alt="${news.title}">`;
-      const dateStr = typeof news.date === 'number' ? formatDate(news.date) : news.date;
-      document.getElementById('modal-meta').innerHTML = `<span>${dateStr}</span><span class="card-source source-steam">Steam</span>`;
+      document.getElementById('modal-cover').innerHTML = `<img src="${news.image}" alt="${news.title}">`;
+      document.getElementById('modal-meta').innerHTML = `<span>${news.date}</span><span class="card-source source-steam">Steam</span>`;
       document.getElementById('modal-content').innerHTML = news.content;
       document.getElementById('modal-overlay').classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -801,7 +857,6 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // Smooth scroll for nav links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
@@ -814,74 +869,7 @@
       });
     });
 
-    const APP_ID = 3526710;
-    const PROXY = 'https://api.codetabs.com/v1/proxy?quest=';
-
-    async function fetchSteam(url) {
-      const res = await fetch(PROXY + url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) throw new Error('Got HTML instead of JSON');
-      return JSON.parse(text);
-    }
-
-    async function loadData() {
-      try {
-        const [appData, reviewsData, newsData] = await Promise.all([
-          fetchSteam(`https://store.steampowered.com/api/appdetails?appids=${APP_ID}`),
-          fetchSteam(`https://store.steampowered.com/appreviews/${APP_ID}?json=1&num_per_page=0&language=all`),
-          fetchSteam(`https://store.steampowered.com/news/?appid=${APP_ID}&json=1&count=20`),
-        ]);
-
-        const app = appData[String(APP_ID)];
-        const info = app?.data;
-
-        if (info) {
-          if (info.name) document.querySelector('.game-title').textContent = info.name;
-          if (info.short_description) document.querySelector('.game-subtitle').textContent = info.short_description;
-          if (info.developers?.length) {
-            document.querySelector('.meta-value').textContent = info.developers.join(', ');
-          }
-          if (info.release_date?.date) {
-            document.querySelectorAll('.meta-item')[2]?.querySelector('.meta-value') &&
-              (document.querySelectorAll('.meta-item')[2].querySelector('.meta-value').textContent = info.release_date.date);
-          }
-          if (info.price_overview) {
-            document.querySelectorAll('.meta-item')[3]?.querySelector('.meta-value') &&
-              (document.querySelectorAll('.meta-item')[3].querySelector('.meta-value').textContent = info.price_overview.final_formatted);
-          }
-          if (info.genres?.length) {
-            document.querySelector('.game-tags').innerHTML = info.genres.slice(0, 5).map(g => `<span class="tag">${g.description}</span>`).join('');
-          }
-          if (info.header_image) {
-            document.querySelector('.game-cover img').src = info.header_image;
-          }
-        }
-
-        if (reviewsData?.query_summary) {
-          const r = reviewsData.query_summary;
-          const pct = r.total_reviews > 0 ? Math.round(r.total_positive / r.total_reviews * 100) : 0;
-          document.querySelector('.user-name').textContent = `${pct}% positive (${r.total_reviews.toLocaleString()} reviews)`;
-        }
-
-        const apiNews = newsData?.appnews?.newsitems || [];
-        if (apiNews.length) {
-          newsData = apiNews.map(n => ({
-            title: n.title,
-            date: n.date,
-            content: n.contents || '',
-          }));
-          renderNews(newsData);
-        } else {
-          renderNews(FALLBACK_NEWS);
-        }
-      } catch (e) {
-        console.log('Steam API unavailable, using fallback:', e.message);
-        renderNews(FALLBACK_NEWS);
-      }
-    }
-
-    loadData();
+    renderNews(newsData);
   </script>
 </body>
 </html>
