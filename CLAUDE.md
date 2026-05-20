@@ -1,37 +1,45 @@
 # Pixelcrab
 
-Static game information website for "Everything is Crab" (Steam AppID: 3526710).
+Pixelcrab is a Next.js content aggregation MVP for pixel games. The original `index.html` remains as a visual reference only.
 
-## Tech
+## Current Architecture
 
-- Pure HTML/CSS/JS, no framework, no build step
-- Single `index.html` file (~875 lines): structure + styles + data + logic
-- CSS custom properties for theming
-- GitHub Pages deployment via `.github/workflows/static.yml`
+- `app/`: Next.js App Router pages, SEO routes, legal pages, admin shell
+- `components/`: shared UI components
+- `data/seed.ts`: local MVP seed data
+- `lib/`: content helpers, config, Supabase helpers, shared types
+- `scripts/`: Steam and YouTube import scripts
+- `supabase/migrations/`: database schema and RLS policies
+- `public/image/logo.svg`: active header logo
+- `public/steam-scrape/images/`: local cover images
 
-## Data
+## Workflow
 
-All game data is hardcoded in `index.html` as a `newsData` array (8 items). No API calls. Steam API integration was attempted but blocked by CORS (browser) and IP filtering (cloud servers).
+Run from the project folder:
 
-## Key Files
+```bash
+cd "/Users/luoao/Desktop/TC/UXfile/AI/pixelcrab"
+npm install
+npm run dev
+```
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Main page: header, hero, news cards, guides, game info, footer, modal |
-| `steam-scrape/images/` | 18 compressed JPEG news cover images (~3.3MB) |
-| `image/logo.svg` | Site logo |
-| `.github/workflows/static.yml` | GitHub Pages auto-deploy on push to main |
+Run checks:
 
-## Running
+```bash
+npm run build
+npm test
+```
 
-Open `index.html` in a browser. No install needed.
+Both build and tests pass locally as of the Next.js MVP migration.
 
-## Deploy
+## Content Rule
 
-Push to `main` → GitHub Actions auto-deploys to Pages.
+All imports should create `pending` content first. Only `published` content appears on public pages and in SEO feeds.
 
-## Notes
+## MVP Scope
 
-- User is a UX designer (罗奥), not a developer. Keep explanations simple.
-- News content includes both English and Chinese articles from official Steam announcements.
-- Images were compressed from PNG to JPEG (max 1200px, quality 80%) for faster loading.
+- One game: Everything is Crab.
+- Steam news import prepared.
+- YouTube guide import prepared.
+- Bilibili entries remain manual.
+- Supabase tables and RLS are prepared for admin review and future comments.

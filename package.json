@@ -1,0 +1,30 @@
+{
+  "name": "pixelcrab",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Pixelcrab content hub MVP for pixel game news, guides, events, and future community features.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "playwright test",
+    "import:steam": "node scripts/import-steam.mjs",
+    "import:youtube": "node scripts/import-youtube.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "next": "^15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.4",
+    "typescript": "^5.8.2"
+  }
+}
